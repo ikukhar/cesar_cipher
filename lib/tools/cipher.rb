@@ -38,17 +38,3 @@ class Cipher
     result
   end
 end
-
-# if ARGV.empty?
-#   ARGV << 'Currying allows us to call a function with only part of its arguments and it will return another function that requires the remainder'
-#   ARGV << 5
-# end
-#
-# string = ARGV[0]
-# offset = ARGV[1].to_i
-#
-# encrypt_str = encrypt(string, offset)
-# decrypt_str = decrypt(encrypt_str, offset)
-# try_auto_decrypt(encrypt_str)
-#
-# puts frequency(string)
