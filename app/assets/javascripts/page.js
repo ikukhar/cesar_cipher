@@ -16,7 +16,7 @@ function crypt(type) {
       $('#result-ta').val(data['text']);
     },
     error: function(e) {
-      $('#info').html('<p>An error has occurred</p>').addClass("info-error");
+      showAlert("An error has occurred", 'danger');
     },
     dataType: 'json'
   });
@@ -65,20 +65,24 @@ function analyseText() {
     },
     success: function(data) {
       $('#result-ta').val(data['text']);
-      $('#info').html('<p>Guessed offsets: '+data['guessed_offsets']+'</p>').addClass("info-success");
+
+      guessed_offsets = data['guessed_offsets'];
+      if (guessed_offsets.length) {
+          showAlert('Guessed offsets: '+guessed_offsets, 'info');
+      }
 
       letter_freq = data['letter_freq'];
       letters = Object.keys(letter_freq);
       values = Object.keys(letter_freq).map(function (key) {
        return letter_freq[key];
       });
-      
+
       chart.series[0].setData(values);
       chart.xAxis[0].setCategories(letters);
       $('#chart').show();
     },
     error: function(e) {
-      $('#info').html('<p>An error has occurred</p>').addClass("info-error");
+      showAlert("An error has occurred", 'danger');
     },
  dataType: 'json'
   });
@@ -91,6 +95,14 @@ var delay = (function(){
     timer = setTimeout(callback, ms);
   };
 })();
+
+function showAlert(message, type) {
+    $('#alert')
+      .addClass("alert-"+type)
+      .fadeIn()
+      .find('#alert-text')
+      .text(message);
+}
 
 $(function(){
 
@@ -112,7 +124,9 @@ $(function(){
   });
 
   setChart();
-
   $('#chart').hide();
 
+  $('#dismiss-btn').click(function() {
+    $("#alert").fadeOut()
+  });
 });

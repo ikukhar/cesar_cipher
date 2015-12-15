@@ -1,16 +1,18 @@
 
 .container
   .title
-    Title
+    Cesar cipher
   .text-pane
     .left-pane
       =text_area_tag(:"input-ta", "", size: "40x15")
     .middle-pane
       =number_field_tag(:offset, 5, in: 1..100)
       .buttons
-        =button_tag 'encrypt', id: :"encrypt-btn"
-        =button_tag 'decrypt', id: :"decrypt-btn"
+        =button_tag 'Encrypt', id: :"encrypt-btn"
+        =button_tag 'Decrypt', id: :"decrypt-btn"
     .right-pane
       =text_area_tag(:"result-ta", "", size: "40x15")
   .chart#chart
-  .info#info
+  #alert.alert.alert-dismissable
+    %span#alert-text
+    =button_tag '×', class: "close", id: "dismiss-btn"
