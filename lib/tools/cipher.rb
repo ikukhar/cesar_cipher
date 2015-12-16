@@ -32,7 +32,7 @@ class Cipher
 
   def self.guess_offsets(string)
     result = []
-    1.upto 26 do |i|
+    1.upto 100 do |i|
       result << i if decrypt(string, i).language == :english
     end
     result
